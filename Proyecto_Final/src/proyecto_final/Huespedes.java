@@ -2,11 +2,13 @@ package proyecto_final;
 
 public class Huespedes extends Persona {
 
+    //Atributos de la clase Huespedes
     private boolean reserva = false;
     private boolean hospedaje = false;
     private double temperatura = 0.0;
     private String pais = "";
 
+    //Constructor
     public Huespedes(boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono) {
         super(cédula, nombre, apellido, direccion, telefono);
         this.reserva = reserva;
@@ -15,6 +17,7 @@ public class Huespedes extends Persona {
         this.pais = pais;
     }
 
+    //Mostrar datos
     public void getAtributos() {
         System.out.println("NOMBRE: " + this.nombre);
         System.out.println("APELLIDO: " + this.apellido);
