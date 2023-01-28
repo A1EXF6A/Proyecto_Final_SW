@@ -11,34 +11,38 @@ public class Menu_Hostal {
         boolean exit = false;
         String op1;
         //Codigo Menú
+        do {
+            System.out.printf("\n", "OPCIONES");
+            System.out.println("[1] Ingreso de datos del personal de servicios");
+            System.out.println("[2] Ingreso-Salida de huespedes");
+            System.out.println("[3] Ver atributos de objetos");
+            System.out.println("[4] Datos Generales");
+            System.out.println("[5] Salir");
+            try {
+                op = Integer.valueOf(tec.next());
 
-        System.out.printf("\n", "OPCIONES");
-        System.out.println("[1] Ingreso de datos del personal de servicios");
-        System.out.println("[2] Ingreso-Salida de huespedes");
-        System.out.println("[3] Ver atributos de objetos");
-        System.out.println("[4] Datos Generales");
-        System.out.println("[5] Salir");
-        op = Integer.valueOf(tec.next());
-
-        switch (op) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                Huespedes person = new Huespedes(true, true, 36.00, "Ecuador", "0150496420", "David", "Giler", "Cuenca", "099485720");
-                person.getAtributos();
-                break;
-            case 5:
-                System.out.println("De verdad deseas salir s/n");
-                op1 = tec.next();
-                if (op1.equalsIgnoreCase("S")) {
-                    exit = true;
+                switch (op) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        Huespedes person = new Huespedes(true, true, 36.00, "Ecuador", "0150496420", "David", "Giler", "Cuenca", "099485720");
+                        person.getAtributos();
+                        break;
+                    case 5:
+                        exit = true;
+                        System.out.println("GRACIAS POR USAR EL PROGRAMA");
+                        break;
+                    default:
+                        System.out.println("Ingresar solo numeros dentro del menú");
                 }
-                break;
-        }
+            } catch (NumberFormatException ex) {
+                System.out.println("Ingrese solo numeros");
+            }
+        } while (exit != true);
 
     }
 
