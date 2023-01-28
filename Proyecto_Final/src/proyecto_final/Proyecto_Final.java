@@ -18,10 +18,15 @@ public class Proyecto_Final {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner tec = new Scanner(System.in);
-        String option;
+        String option="";
         boolean opc;
         int opc6=0;
         
+        Ingreso_Salida gg = new Ingreso_Salida("", opc6, opc6, opc6, true, true, opc6, "", "", option, option, option, option);
+        gg.Entrada();
+        System.out.println(gg.getA());
+        gg.salir();
+        /*
         do {
             do {
               System.out.println("Escoja una opcion");
@@ -114,7 +119,7 @@ public class Proyecto_Final {
         public static void linea(){
         for (int i = 0; i < 198; i++) {
             System.out.printf("-");
-        }
+        }*/
     }
     
 }

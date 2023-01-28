@@ -8,6 +8,22 @@ public class Huespedes extends Persona {
     private double temperatura = 0.0;
     private String pais = "";
 
+    public void setReserva(boolean reserva) {
+        this.reserva = reserva;
+    }
+
+    public void setHospedaje(boolean hospedaje) {
+        this.hospedaje = hospedaje;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
     //Constructor
     public Huespedes(boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono) {
         super(cédula, nombre, apellido, direccion, telefono);
@@ -38,5 +54,9 @@ public class Huespedes extends Persona {
         System.out.println("PAIS DE DONDE VIENE: " + this.pais);
 
     }
-
+    //metodo que devuelve los aributos en forma de cadena
+    public String getA(){
+        return "Nombre: "+this.nombre+" Apellido: "+this.apellido+" Cedula: "+this.cédula+" Direccion: "+this.direccion+""
+                + " Telefono: "+this.telefono+" Pais: "+this.pais+" Temperatura: "+this.temperatura+" Reserva: "+this.reserva+" Hospedaje: "+this.hospedaje;
+    }
 }
