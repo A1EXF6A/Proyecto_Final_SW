@@ -16,24 +16,26 @@ public class Proyecto_Final {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // TODO code application logic here 
         Scanner tec = new Scanner(System.in);
         String option="";
-        boolean opc;
+        boolean opc,reser;
         int opc6=0;
-        
+        String res;
+        /*
         Ingreso_Salida gg = new Ingreso_Salida("", opc6, opc6, opc6, true, true, opc6, "", "", option, option, option, option);
-        gg.Entrada();
+        gg.Entrada();n
         System.out.println(gg.getA());
         gg.salir();
-        /*
+        /**/
         do {
             do {
               System.out.println("Escoja una opcion");
-              System.out.println("1 opcion");
-              System.out.println("2 opcion");
-              System.out.println("3 opcion");
-              System.out.println("4 opcion");
+              System.out.println("1 ingreso personal");
+              System.out.println("2 ingreso-salida huespedes");
+              System.out.println("3 mostrar atributos");
+              System.out.println("4 datos generales");
+              System.out.println("5 salir");
               System.out.println("Ingrese una opcion");
               try{
                 opc6 = Integer.valueOf(tec.next());
@@ -58,13 +60,26 @@ public class Proyecto_Final {
                 break;
             case 2:
                do{            
-            
-            linea();
-            System.out.printf("\n\033[45mDEESA REPETIR LA OPCION 2 S/N: ");
-            option = tec.nextLine();
-            opc=verf(option);
-            limp();
-        }while(opc==false);
+                   do {
+                        System.out.println("Bienvenido al hotel XXXXXXXX");
+                        System.out.printf("Elija la opcion:%n1 ingresar al hotel%n2 salir del hotel%n");
+                        res = tec.next();
+                        reser = res.matches("[1]||[2]");
+                        if(res.equals("1")==true){
+                            System.out.println("OPCION 1");
+                            break;
+                        }
+                        if(reser==false)System.out.println("ERROR DE DARTOS INGRESE 1 O 2");
+                   } while (reser==false);
+                   
+                   
+                   
+                    linea();
+                    System.out.printf("\n\033[45mDEESA REPETIR LA OPCION 2 S/N: ");
+                    option = tec.nextLine();
+                    opc=option.equalsIgnoreCase("s");
+                    //limp();
+                }while(opc==false);
                 System.out.println("\033[45mSALIO DE LA OPCION 2");
                
                 break;
@@ -119,7 +134,7 @@ public class Proyecto_Final {
         public static void linea(){
         for (int i = 0; i < 198; i++) {
             System.out.printf("-");
-        }*/
+        }
     }
     
 }

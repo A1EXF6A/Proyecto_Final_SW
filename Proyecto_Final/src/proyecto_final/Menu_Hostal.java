@@ -10,6 +10,11 @@ public class Menu_Hostal {
         int op;
         boolean exit = false;
         String op1;
+        //OPCION 2
+        String opc,is;
+        boolean ver,ver2; int y=0;
+        int opc6=0; String option="";
+        Ingreso_Salida gg = new Ingreso_Salida("", opc6, opc6, opc6, true, true, opc6, "", "", option, option, option, option);
         //Codigo Menú
         do {
             System.out.printf("\n", "OPCIONES");
@@ -25,6 +30,29 @@ public class Menu_Hostal {
                     case 1:
                         break;
                     case 2:
+                        do {
+                            do {
+                                System.out.println("BIENBENIDO AL HOTEL XXXXXX");
+                                System.out.println("ELIJA LA OPCION\n1 ingreso\n2 salida");
+                                is = tec.next();
+                                ver2 = is.matches("[1]||[2]");
+                                if(is.equals("1")==true){
+                                    System.out.println("Ingrese los siguientes datos");
+                                    gg.Entrada();
+                                }else if(is.equals("2")){
+                                    System.out.println("Gracias por visitarnos");
+                                    gg.salir();
+                                }
+                                
+                                
+                                if(ver2==false)System.out.println("DATOS INCORRECTOS");
+                            } while (ver2==false);
+                            //tec.next();
+                            System.out.println("si desea repetir ingrese un numero diferente de 0");
+                            y = tec.nextInt();
+                            //opc = tec.nextLine();
+                            //ver=opc.equalsIgnoreCase("S");
+                        } while (y!=0);
                         break;
                     case 3:
                         break;
