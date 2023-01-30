@@ -1,14 +1,17 @@
 package proyecto_final;
 
 
-public class Reservas {
+public class Reservas extends Habitaciones {
     int dia,mes,año;
     String estado_de_reserva;
     
-    public Reservas(int dia,int mes, int año,String estado_de_reserva ){
+    public Reservas(int dia,int mes, int año,String estado_de_reserva, int numero, int camas){
+        super(numero,camas);
         this.dia= dia;
         this.mes= mes;
         this.año= año;
+        this.numero = numero;
+        this.camas = camas;
     }
     
      public int getDia() {
@@ -36,3 +39,5 @@ public class Reservas {
     }
    
 }
+// hola :_v
+//prueba

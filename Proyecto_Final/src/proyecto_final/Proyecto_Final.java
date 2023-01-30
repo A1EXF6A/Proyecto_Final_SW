@@ -26,7 +26,7 @@ public class Proyecto_Final {
         gg.Entrada();
         System.out.println(gg.getA());
         gg.salir();
-        /*
+        
         do {
             do {
               System.out.println("Escoja una opcion");
@@ -119,7 +119,7 @@ public class Proyecto_Final {
         public static void linea(){
         for (int i = 0; i < 198; i++) {
             System.out.printf("-");
-        }*/
+        }
     }
     
 }

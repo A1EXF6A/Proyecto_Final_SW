@@ -1,7 +1,7 @@
 package proyecto_final;
 
 import java.util.Scanner;
-
+//ingreso salida 
 public class Ingreso_Salida extends Huespedes{
     private String date;
     private int costo;
@@ -135,3 +135,4 @@ public class Ingreso_Salida extends Huespedes{
     }
     
 }
+//  persona personal_servicios 

@@ -1,9 +1,9 @@
 package proyecto_final;
 
-class Habitaciones {
-    private int numero;
-    private int camas;
-    private boolean[] estadoCama;
+class Habitaciones extends Huespedes{
+    int numero;
+    protected int camas;
+    protected boolean[] estadoCama;
 
     public Habitaciones(int numero, int camas) {
         this.numero = numero;
