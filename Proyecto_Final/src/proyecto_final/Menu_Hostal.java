@@ -27,30 +27,7 @@ public class Menu_Hostal {
                         DatosPersonal();
                         break;
                     case 2:
-                        do {
-                            do {
-                                System.out.println("BIENBENIDO AL HOTEL XXXXXX");
-                                System.out.println("ELIJA LA OPCION\n1 ingreso\n2 salida");
-                                is = tec.next();
-                                ver2 = is.matches("[1]||[2]");
-                                if (is.equals("1") == true) {
-                                    System.out.println("Ingrese los siguientes datos");
-                                    gg.Entrada();
-                                } else if (is.equals("2")) {
-                                    System.out.println("Gracias por visitarnos");
-                                    gg.salir();
-                                }
-
-                                if (ver2 == false) {
-                                    System.out.println("DATOS INCORRECTOS");
-                                }
-                            } while (ver2 == false);
-                            //tec.next();
-                            System.out.println("si desea repetir ingrese un numero diferente de 0");
-                            y = tec.nextInt();
-                            //opc = tec.nextLine();
-                            //ver=opc.equalsIgnoreCase("S");
-                        } while (y != 0);
+                        
                         break;
                     case 3:
                         break;
