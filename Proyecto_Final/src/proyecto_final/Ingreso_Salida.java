@@ -82,7 +82,7 @@ public class Ingreso_Salida extends Huespedes{
         } while (ver==false);
         do {
             System.out.print("Pais: "); date = tec.next();
-            ver=date.matches("[a-z]{3,15}");
+            ver=date.matches("[a-zA-Z]{3,15}");
             if(ver==true){
                super.setPais(date);
             }if(ver==false)System.out.println("Error de datos");
@@ -96,21 +96,21 @@ public class Ingreso_Salida extends Huespedes{
         } while (ver==false);
         do {
             System.out.print("Nombre: "); date = tec.next();
-            ver=date.matches("[a-z]{3,15}");
+            ver=date.matches("[a-zA-Z]{3,15}");
             if(ver==true){
                super.nombre=date;
             }if(ver==false)System.out.println("Error de datos");
         } while (ver==false);
         do {
             System.out.print("Apellido: "); date = tec.next();
-            ver=date.matches("[a-z]{3,15}");
+            ver=date.matches("[a-zA-Z]{3,15}");
             if(ver==true){
                super.apellido=date;
             }if(ver==false)System.out.println("Error de datos");
         } while (ver==false);
         do {
             System.out.print("Direccion: "); date = tec.next();
-            ver=date.matches("[a-z]{3,20}[0-9]{1,10}");
+            ver=date.matches("[a-zA-Z]{3,20}[0-9]{1,10}");
             if(ver==true){
                super.direccion=date;
             }if(ver==false)System.out.println("Error de datos");
