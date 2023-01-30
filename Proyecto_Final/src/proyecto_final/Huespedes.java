@@ -7,7 +7,16 @@ public class Huespedes extends Persona {
     private boolean hospedaje = false;
     private double temperatura = 0.0;
     private String pais = "";
-
+    
+public Huespedes(String date, int costo, int num_room, int bed, boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono) {
+        super(cédula, nombre, apellido, direccion, telefono);
+        this.reserva= reserva;
+        this.hospedaje=hospedaje;
+        this.temperatura=temperatura;
+        this.pais=pais;
+        
+    }
+    
     public void setReserva(boolean reserva) {
         this.reserva = reserva;
     }

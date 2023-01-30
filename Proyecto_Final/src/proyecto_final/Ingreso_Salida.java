@@ -2,20 +2,28 @@ package proyecto_final;
 
 import java.util.Scanner;
 //ingreso salida 
-public class Ingreso_Salida extends Huespedes{
+public class Ingreso_Salida {
     private String date;
     private int costo;
     private int num_room;
     private int bed;
+    protected int hora_entrada;
+    protected int hora_salida;
 
-    
-    public Ingreso_Salida(String date, int costo, int num_room, int bed, boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono) {
-        super(reserva, hospedaje, temperatura, pais, cédula, nombre, apellido, direccion, telefono);
+    Ingreso_Salida (int hora_entrada ,int hora_salida ){
+        this.hora_entrada= hora_entrada;
+        this.hora_salida=hora_salida;
+    }
+
+    public Ingreso_Salida(String date, int costo, int num_room, int bed) {
         this.date = date;
         this.costo = costo;
         this.num_room = num_room;
         this.bed = bed;
     }
+    
+    
+    
     public void Entrada(){
         Scanner tec = new Scanner(System.in);
         //Ingreso_Salida c = new Ingreso_Salida(); 
