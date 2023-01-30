@@ -1,6 +1,6 @@
 package proyecto_final;
 
-public class Persona {
+public class Persona extends Ingreso_Salida {
 
     protected String cédula;
     protected String nombre;
@@ -9,6 +9,7 @@ public class Persona {
     protected String telefono;
 
     public Persona(String cédula, String nombre, String apellido, String direccion, String telefono) {
+        super(hora_entrada,hora_salida);
         this.cédula = cédula;
         this.nombre = nombre;
         this.apellido = apellido;

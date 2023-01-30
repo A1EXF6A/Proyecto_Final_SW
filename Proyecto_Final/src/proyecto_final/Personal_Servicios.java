@@ -9,11 +9,11 @@ public class Personal_Servicios extends Persona {
     static ArrayList<Personal_Servicios> ListaEmpleados = new ArrayList();
     //Atributos de la clase Personal_Servicios
     private String cargo;
-    private int hora_entrada, hora_salida;
+    
 
     //Constructor de la clase
-    public Personal_Servicios(String cargo, String cédula, String nombre, String apellido, String direccion, String telefono) {
-        super(cédula, nombre, apellido, direccion, telefono);
+    public Personal_Servicios(String cargo, String cédula, String nombre, String apellido, String direccion, String telefono,int hora_entrada, int hora_salida) {
+        super(cédula, nombre, apellido, direccion, telefono,hora_entrada,hora_salida);
         this.cargo = cargo;
     }
 
