@@ -11,14 +11,6 @@ public class Menu_Hostal {
         //Atributos
         int op;
         boolean exit = false;
-        String op1;
-        //OPCION 2
-        String opc, is;
-        boolean ver, ver2;
-        int y = 0;
-        int opc6 = 0;
-        String option = "";
-        Ingreso_Salida gg = new Ingreso_Salida("", opc6, opc6, opc6, true, true, opc6, "", "", option, option, option, option);
         //Codigo Menú
         do {
             System.out.printf("\n", "OPCIONES");
