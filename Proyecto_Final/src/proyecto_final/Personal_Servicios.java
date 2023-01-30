@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class Personal_Servicios extends Persona {
 
+    Scanner tec = new Scanner(System.in);
+    static ArrayList<Personal_Servicios> ListaEmpleados = new ArrayList();
     //Atributos de la clase Personal_Servicios
-
     private String cargo;
     private int hora_entrada, hora_salida;
 
@@ -27,10 +28,6 @@ public class Personal_Servicios extends Persona {
     }
 
     //Metodos de la clase
-    public void actCargo(String newcargo) {
-        this.cargo = newcargo;
-    }
-
     public static void DatosPersonal() {
         Scanner tec = new Scanner(System.in);
         //Atributos
@@ -48,10 +45,7 @@ public class Personal_Servicios extends Persona {
         direccion = tec.next();
         System.out.println("Ingrese el cargo de trabajo");
         cargo = tec.next();
-        ArrayList<Personal_Servicios> ListaEmpleados = new ArrayList();
         Personal_Servicios empleado = new Personal_Servicios(cargo, cedula, nombre, apellido, direccion, telefono);
         ListaEmpleados.add(empleado);
-
     }
-
 }
