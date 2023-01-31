@@ -1,22 +1,21 @@
 package proyecto_final;
 
 class Habitaciones extends Huespedes{
-    int numero;
-    protected int camas;
-    protected boolean[] estadoCama;
+    int numero_habitacion;
 
-    public Habitaciones(int numero, int camas) {
-        this.numero = numero;
-        this.camas = camas;
-        this.estadoCama = new boolean[camas];
+    public Habitaciones(int numero_habitacion, String date, int costo, int num_room, int bed, boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono, String hora_entrada, String hora_salida) {
+        super(date, costo, num_room, bed, reserva, hospedaje, temperatura, pais, cédula, nombre, apellido, direccion, telefono, hora_entrada, hora_salida);
+        this.numero_habitacion = numero_habitacion;
+    }
+    
+
+
+    public int getNumero_habitacion() {
+        return numero_habitacion;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumero_habitacion(int numero_habitacion) {
+        this.numero_habitacion = numero_habitacion;
     }
 
     public int getCamas() {
@@ -39,21 +38,14 @@ class Habitaciones extends Huespedes{
         int contador = 0;
         for (int i = 0; i < camas; i++) {
             if (!estadoCama[i]) {
+                System.out.printf("cama %d esta disponible: %s\n",i+1,estadoCama[i]);
                 contador++;
             }
         }
         return contador;
     }
 
-    public int reservarCama() {
-        for (int i = 0; i < camas; i++) {
-            if (!estadoCama[i]) {
-                estadoCama[i] = true;
-                return i;
-            }
-        }
-        return -1;
-    }
+   
 
     public void liberarCama(int numCama) {
         if (numCama >= 0 && numCama < camas) {

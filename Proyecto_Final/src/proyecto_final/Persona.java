@@ -8,7 +8,7 @@ public class Persona extends Ingreso_Salida {
     protected String direccion;
     protected String telefono;
 
-    public Persona(String cédula, String nombre, String apellido, String direccion, String telefono) {
+    public Persona(String cédula, String nombre, String apellido, String direccion, String telefono,String hora_entrada,String hora_salida) {
         super(hora_entrada,hora_salida);
         this.cédula = cédula;
         this.nombre = nombre;
