@@ -143,6 +143,7 @@ public class Menu_Hostal {
                         leer(empleados);
                         System.out.println("\033[44mDatos de los huespedes");
                         leer(huespedes);
+                        datosGenerales(empleados, huespedes);
                         
                         
                         break;
@@ -204,5 +205,28 @@ public class Menu_Hostal {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public static void datosGenerales(File acr1,File acr2){
+        try {
+            FileWriter datos = new FileWriter("C:\\Users\\HOME\\OneDrive - UNIVERSIDAD TÉCNICA DE AMBATO\\1 semestre-repeticion\\LECTRURA\\lectura2.txt",true);
+            
+            Scanner ar = new Scanner(acr1); Scanner ar2 = new Scanner(acr1); String line = "";
+            datos.write("DATOS EMPLEADOS: \n");
+            while(ar.hasNext()){
+                line = ar.nextLine();
+                datos.write(line+"\n");
+            }
+            datos.write("DATOS HUESPEDES: \n");
+            while(ar2.hasNext()){
+                line = ar2.nextLine();
+                datos.write(line+"\n");
+            }
+            
+            datos.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
