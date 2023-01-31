@@ -105,10 +105,12 @@ public class Menu_Hostal {
                                     ListaPersonal.get(i).cédula, ListaPersonal.get(i).nombre, ListaPersonal.get(i).apellido,
                                     ListaPersonal.get(i).direccion, ListaPersonal.get(i).telefono, ListaPersonal.get(i).hora_entrada, ListaPersonal.get(i).hora_salida);
                         }*/
+                        
                         //PARA LEER LOS DATOS DESDE LOS ARCHIVOS QUE SE CREAN EN LAS OPCIONES 1 Y 2
-                        String ingreso_cedula = null; boolean verificar =false; int cont = 0;String linea;
+                        String ingreso_cedula = null,repetir=null; boolean verificar =false; int cont = 0;String linea;
                         //File arc = new File("C:\\Users\\HOME\\OneDrive - UNIVERSIDAD TÉCNICA DE AMBATO\\Escritorio\\Proyecto_Final\\Proyecto_Final_SW\\Proyecto_Final\\huespedes.txt");
                         do {
+                                do {
                             try {
                                 System.out.print("Cedula: "); //pide la cedula para buscar en los archivos
                                 ingreso_cedula = teclado.next();
@@ -117,30 +119,20 @@ public class Menu_Hostal {
                                     System.out.println("ingrese una cedula valida");  
                                 }
                                 if(verificar==true){
-                                    Scanner archivo = new Scanner(empleados); //los escaner para leer los archivos
-                                    Scanner archivo2 = new Scanner(huespedes);
                                     //lee el archivo
-                                    while(archivo.hasNext()){
-                                        linea = archivo.nextLine(); //se asigna una linea a un string
-                                        if(linea.contains(ingreso_cedula)){ //se verifica si la linea contiene la cedula
-                                            System.out.println(linea);     //imprime los datos del objeto
-                                        }else if(linea.contains(ingreso_cedula)==false){ //para ver si existe la cedula 0 si existe y + de  cero si no existe
-                                            cont++;
-                                        }}
-                                    cont=0;
-                                    while(archivo2.hasNext()){ //lo mismo que lo anterior
-                                        linea = archivo2.nextLine();
-                                        if(linea.contains(ingreso_cedula)){
-                                            System.out.println(linea);
-                                        }else if(linea.contains(ingreso_cedula)==false){
-                                            cont++;
-                                        }}
-                                    if(cont!=0)System.out.println("NO EXISTE EN REGISTRO");
+                                    leer_huespedes(huespedes, ingreso_cedula);
+                                    leer_empleados(empleados, ingreso_cedula);
+                                    
+                                    
                                 }
                             } catch (Exception e) {
                                 System.out.println("Ingrese unicamente numeros");
                             }
                         } while (verificar == false);
+                                System.out.println("Desea nuscar otra persona ingrese S");
+                                repetir=teclado.next();         
+                        } while (repetir.equalsIgnoreCase("S")==true);
+                        
                         
                         break;
                             
@@ -177,6 +169,38 @@ public class Menu_Hostal {
                 System.out.println(linea);
                 
             }  
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void leer_huespedes(File arc,String ingreso_cedula){
+        try {
+            Scanner archivo = new Scanner(arc);
+            String linea; int cont = 0;
+            while(archivo.hasNext()){
+                   linea = archivo.nextLine(); //se asigna una linea a un string
+                   if(linea.contains(ingreso_cedula)){ //se verifica si la linea contiene la cedula
+                   System.out.println(linea);     //imprime los datos del objeto
+                   }else if(linea.contains(ingreso_cedula)==false){ //para ver si existe la cedula 0 si existe y + de  cero si no existe
+                   cont++;
+                   }}
+            //if(cont>0)System.out.println("NO EXISTE EN REGISTRO De huespedes");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void leer_empleados(File arc,String ingreso_cedula){
+        try {
+            Scanner archivo = new Scanner(arc);
+            String linea; int cont = 0;
+            while(archivo.hasNext()){
+                   linea = archivo.nextLine(); //se asigna una linea a un string
+                   if(linea.contains(ingreso_cedula)){ //se verifica si la linea contiene la cedula
+                   System.out.println(linea);     //imprime los datos del objeto
+                   }else if(linea.contains(ingreso_cedula)==false){ //para ver si existe la cedula 0 si existe y + de  cero si no existe
+                   cont++;
+                   }}
+            //if(cont>0)System.out.println("NO EXISTE EN REGISTRO de los empleados");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
         }
