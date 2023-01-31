@@ -1,0 +1,4 @@
+alex,guachi,18,0993350552,soltero,estudiante,software,185074414
+juan,paredes,20,093505588,casado,luis,profesional
+maria,vernades,20,casada,viuda,divorciada,hoal
+giomaira,gomez,19,nose,derecho,estudiante,1850274415

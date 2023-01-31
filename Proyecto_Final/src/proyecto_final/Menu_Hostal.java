@@ -1,12 +1,15 @@
 package proyecto_final;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Menu_Hostal {
     ArrayList<Personal_Servicios> ListaPersonal;
@@ -16,7 +19,7 @@ public class Menu_Hostal {
         String nombre_archivoempleados="empleados.txt",nombre_archivohuespedes="huespedes.txt";
         File empleados = new File(nombre_archivoempleados);
         File huespedes = new File(nombre_archivohuespedes);
-        FileWriter fwempleados = new FileWriter(empleados);
+        FileWriter fwempleados = new FileWriter(empleados,true); //TRUE PARA QUE NO SE SOBREESCRIBA EL ARCHIVO
         PrintWriter Guardar_empleados = new PrintWriter(fwempleados);
         FileReader frempleados = new FileReader(empleados);
         Scanner leer_empleados = new Scanner(frempleados);
@@ -41,7 +44,8 @@ public class Menu_Hostal {
                     case 1:
                         Personal_Servicios empleado = new Personal_Servicios("", "", "", "", "", "", "", "");
                         empleado.IngresarDatos();
-                        Guardar_empleados.printf("%s,%s,%s,%s,%s,%s,%s,%s",empleado.cargo,empleado.cédula,empleado.nombre,empleado.apellido,
+                        
+                        Guardar_empleados.printf("%s,%s,%s,%s,%s,%s,%s,%s %n",empleado.cargo,empleado.cédula,empleado.nombre,empleado.apellido,
                                 empleado.direccion,empleado.telefono,empleado.hora_entrada,empleado.hora_salida);
                         ListaPersonal.add(new Personal_Servicios(empleado.cargo,empleado.cédula,empleado.nombre,empleado.apellido,
                                 empleado.direccion,empleado.telefono,empleado.hora_entrada,empleado.hora_salida));
@@ -65,7 +69,7 @@ public class Menu_Hostal {
                                 do {
                                     System.out.println("Bienvenido, desea alojarse en nuestro hotel:");
                                     op2 = teclado.next();
-                                    if (op2.equalsIgnoreCase("Sí")) {
+                                    if (op2.equalsIgnoreCase("Si")) {
                                         huesped.Entrada();
                                         ArrayList<Huespedes> ListaHuespedes=new ArrayList();
                                         ListaHuespedes.add(huesped);
@@ -93,19 +97,62 @@ public class Menu_Hostal {
 
                         break;
                     case 3:
-                       for (int i = 0; i < ListaPersonal.size(); i++) {
+                            /*for (int i = 0; i < ListaPersonal.size(); i++) {
                            
                            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
                                    "DIRECCION", "TELEFONO", "HORA DE ENTRADA", "HORA DE SALIDA");
                             System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", ListaPersonal.get(i).cargo,
                                     ListaPersonal.get(i).cédula, ListaPersonal.get(i).nombre, ListaPersonal.get(i).apellido,
                                     ListaPersonal.get(i).direccion, ListaPersonal.get(i).telefono, ListaPersonal.get(i).hora_entrada, ListaPersonal.get(i).hora_salida);
-                        }
-                        break;
+                        }*/
+                        //PARA LEER LOS DATOS DESDE LOS ARCHIVOS QUE SE CREAN EN LAS OPCIONES 1 Y 2
+                        String ingreso_cedula = null; boolean verificar =false; int cont = 0;String linea;
+                        //File arc = new File("C:\\Users\\HOME\\OneDrive - UNIVERSIDAD TÉCNICA DE AMBATO\\Escritorio\\Proyecto_Final\\Proyecto_Final_SW\\Proyecto_Final\\huespedes.txt");
+                        do {
+                            try {
+                                System.out.print("Cedula: "); //pide la cedula para buscar en los archivos
+                                ingreso_cedula = teclado.next();
+                                verificar = ingreso_cedula.matches("[0-9]{10}");
+                                if (verificar == false) {
+                                    System.out.println("ingrese una cedula valida");  
+                                }
+                                if(verificar==true){
+                                    Scanner archivo = new Scanner(empleados); //los escaner para leer los archivos
+                                    Scanner archivo2 = new Scanner(huespedes);
+                                    //lee el archivo
+                                    while(archivo.hasNext()){
+                                        linea = archivo.nextLine(); //se asigna una linea a un string
+                                        if(linea.contains(ingreso_cedula)){ //se verifica si la linea contiene la cedula
+                                            System.out.println(linea);     //imprime los datos del objeto
+                                        }else if(linea.contains(ingreso_cedula)==false){ //para ver si existe la cedula 0 si existe y + de  cero si no existe
+                                            cont++;
+                                        }}
+                                    cont=0;
+                                    while(archivo2.hasNext()){ //lo mismo que lo anterior
+                                        linea = archivo2.nextLine();
+                                        if(linea.contains(ingreso_cedula)){
+                                            System.out.println(linea);
+                                        }else if(linea.contains(ingreso_cedula)==false){
+                                            cont++;
+                                        }}
+                                    if(cont!=0)System.out.println("NO EXISTE EN REGISTRO");
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Ingrese unicamente numeros");
+                            }
+                        } while (verificar == false);
                         
+                        break;
+                            
                         
                     case 4:
-
+                        System.out.println("Los datos contenidos que posee el hotel son");
+                        System.out.println("\033[44mDatos de los empleados");
+                        leer(empleados);
+                        System.out.println("\033[44mDatos de los huespedes");
+                        leer(huespedes);
+                        
+                        
                         break;
                     case 5:
                         exit = true;
@@ -119,5 +166,19 @@ public class Menu_Hostal {
             }
         } while (exit != true);
 
+    }
+    //metodo que lee los archivos
+    public static void leer(File arc){
+        try {
+            Scanner archivo = new Scanner(arc);
+            String linea;
+            while(archivo.hasNext()){
+                linea = archivo.nextLine();
+                System.out.println(linea);
+                
+            }  
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
