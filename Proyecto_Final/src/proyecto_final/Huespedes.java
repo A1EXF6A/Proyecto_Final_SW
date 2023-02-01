@@ -18,7 +18,6 @@ public class Huespedes extends Persona {
     protected String pais = "";
     protected boolean[] estadoCama;
     protected int camas, hora, minutos, segundos;
-    
 
     public Huespedes(String date, int costo, int num_room, int bed, boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono, String hora_entrada, String hora_salida) {
         super(cédula, nombre, apellido, direccion, telefono, hora_entrada, hora_salida);
@@ -28,29 +27,31 @@ public class Huespedes extends Persona {
         this.pais = pais;
 
     }
+
     public int camasDisponibles() {
         int contador = 0;
         for (int i = 0; i < camas; i++) {
             if (!estadoCama[i]) {
-                System.out.printf("cama %d esta disponible: %s\n",i+1,estadoCama[i]);
+                System.out.printf("cama %d esta disponible: %s\n", i + 1, estadoCama[i]);
                 contador++;
             }
         }
         return contador;
     }
-     public void reservarCama() {
-        int opcion_cama,control_cama=0;
-        do{
-        System.out.println("Ingrese la cama que desea reservar"); 
-        opcion_cama=Integer.valueOf(teclado.next());
-            if (!estadoCama[opcion_cama-1]) {
-                estadoCama[opcion_cama-1] = true;
-                control_cama=1;
-            }
-            else{
+
+    public void reservarCama() {
+        int opcion_cama, control_cama = 0;
+        do {
+            System.out.println("Ingrese la cama que desea reservar");
+            opcion_cama = Integer.valueOf(teclado.next());
+            if (!estadoCama[opcion_cama - 1]) {
+                estadoCama[opcion_cama - 1] = true;
+                control_cama = 1;
+            } else {
                 System.out.println("cama no disponible");
                 System.out.println("Reserve una cama dosponible");
-            }}while(control_cama!=1);
+            }
+        } while (control_cama != 1);
     }
 
     public void setReserva(boolean reserva) {
@@ -116,7 +117,7 @@ public class Huespedes extends Persona {
                     minutos = calendario.get(Calendar.MINUTE);
                     segundos = calendario.get(Calendar.SECOND);
                     System.out.println("Hora de ingreso: " + hora + ":" + minutos + ":" + segundos);
-                    super.hora_entrada= Integer.toString(hora)+":"+Integer.toString(minutos)+":"+Integer.toString(segundos);
+                    super.hora_entrada = Integer.toString(hora) + ":" + Integer.toString(minutos) + ":" + Integer.toString(segundos);
                 } else if (opcion.equalsIgnoreCase("no")) {
                     this.hospedaje = false;
                 } else {
@@ -231,10 +232,10 @@ public class Huespedes extends Persona {
                 System.out.println("Ingrese unicamente numeros");
             }
         } while (this.camas < 0 || this.camas > 6);
-        
-        System.out.printf("Hay %d camas disponibles\n",camasDisponibles());
+
+        System.out.printf("Hay %d camas disponibles\n", camasDisponibles());
         reservarCama();
-        
+
         super.costo = (this.camas * costo_cama);
         //asignamiento habitacion - archivos
         do {
@@ -251,7 +252,7 @@ public class Huespedes extends Persona {
         } while (verificar == false);
         //camas asignadas - archivos
         do {
-            System.out.printf("Numero de camas: %d\n",this.camas);
+            System.out.printf("Numero de camas: %d\n", this.camas);
             fecha = teclado.next();
             verificar = fecha.matches("[0-5]");
             if (verificar == true) {

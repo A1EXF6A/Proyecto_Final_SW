@@ -131,7 +131,8 @@ public class Personal_Servicios extends Persona {
         } while (!opcion2.equalsIgnoreCase("no") && !opcion2.equalsIgnoreCase("si"));
 
     }
-        public void salir() {
+
+    public void salir() {
         String opcion2 = null;
         int hora, minutos, segundos;
         do {
@@ -157,7 +158,6 @@ public class Personal_Servicios extends Persona {
 
     }
 
-    
     public void getAtributos() {
 //return ("NOMBRE: " + this.nombre+"APELLIDO: " + this.apellido+"CÉDULA: " + this.cédula+"DIRECCIÓN: " + this.direccion+"TÉLEFONO: " + this.telefono+"CARGO: " + this.cargo);
         cargo = teclado.next();
