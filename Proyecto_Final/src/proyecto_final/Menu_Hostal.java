@@ -1,5 +1,6 @@
 package proyecto_final;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +18,9 @@ public class Menu_Hostal {
 
     public static void main(String[] args) throws IOException {
         int contador_archivos;
+        int hora,minutos,segundos;
+        String horain;
+        Calendar calendario = Calendar.getInstance();
         String nombre_archivoempleados="empleados.txt",nombre_archivohuespedes="huespedes.txt";
         File empleados = new File(nombre_archivoempleados);
         File huespedes = new File(nombre_archivohuespedes);
@@ -36,7 +41,8 @@ public class Menu_Hostal {
             System.out.println("[2] Ingreso-Salida de huespedes");
             System.out.println("[3] Datos de empleados y huespedes");
             System.out.println("[4] Datos Generales");
-            System.out.println("[5] Salir");
+            System.out.println("[5] Salida de empleados");
+            System.out.println("[6] Salir");
             try {
                 op = Integer.valueOf(teclado.next());
 
@@ -44,7 +50,10 @@ public class Menu_Hostal {
                     case 1:
                         Personal_Servicios empleado = new Personal_Servicios("", "", "", "", "", "", "", "");
                         empleado.IngresarDatos();
-                        
+                        hora = calendario.get(Calendar.HOUR_OF_DAY);
+                        minutos = calendario.get(Calendar.MINUTE);
+                        segundos = calendario.get(Calendar.SECOND);
+                        empleado.hora_entrada = Integer.toString(hora)+":"+Integer.toString(minutos)+":"+Integer.toString(segundos);
                         Guardar_empleados.printf("%s,%s,%s,%s,%s,%s,%s,%s %n",empleado.cargo,empleado.cédula,empleado.nombre,empleado.apellido,
                                 empleado.direccion,empleado.telefono,empleado.hora_entrada,empleado.hora_salida);
                         ListaPersonal.add(new Personal_Servicios(empleado.cargo,empleado.cédula,empleado.nombre,empleado.apellido,
@@ -148,7 +157,12 @@ public class Menu_Hostal {
                         
                         
                         break;
+                        
                     case 5:
+                        salida_hora(empleados);
+                        break;
+                        
+                    case 6:
                         exit = true;
                         System.out.println("GRACIAS POR USAR EL PROGRAMA");
                         break;
@@ -230,6 +244,91 @@ public class Menu_Hostal {
         }
         
     }
+      public static void salida_hora(File arc) throws IOException{
+        String nombre_archivoempleados="empleados.txt",nombre_archivohuespedes="huespedes.txt";
+        File empleados = new File(nombre_archivoempleados);
+        FileWriter fwempleados = new FileWriter(empleados,true); //TRUE PARA QUE NO SE SOBREESCRIBA EL ARCHIVO
+        PrintWriter Guardar_empleados = new PrintWriter(fwempleados);
+         Calendar calendario = Calendar.getInstance();
+         
+           int hora,minutos,segundos;
+           boolean control = false;
+           String hora_salida = null;
+           int cantidad_lineas = 0;
+           Scanner teclado = new Scanner(System.in) ;
+           String ingreso_cedula = null;
+           System.out.println("Ingrese su cedula");
+           ingreso_cedula= teclado.next();
+           String linea_remplazo = null;
+            Scanner archivo = new Scanner(arc);
+            int numero_linea=0;
+            ArrayList<String> lineas = new ArrayList<>();
+//            while(archivo.hasNext()){
+//            contador_limite++;
+//            }
+          //  String acumulador[] = new String[contador_limite];
+            String linea_hora_salida[] = null;
+            String linea;
+int cont = 0;
+while(archivo.hasNext()){
+    if (cont<7) {
+        cont=0;
+    }
+    linea = archivo.nextLine(); //se asigna una linea a un string
+    if(linea.contains(ingreso_cedula)){ //se verifica si la linea contiene la cedula
+        numero_linea=cantidad_lineas;
+        linea_hora_salida= linea.split(",");
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND);
+        hora_salida = Integer.toString(hora)+":"+Integer.toString(minutos)+":"+Integer.toString(segundos);
+//        Guardar_empleados.printf("%s,%s,%s,%s,%s,%s,%s,%s %n", linea_hora_salida[0],linea_hora_salida[1],linea_hora_salida[2],
+//                linea_hora_salida[3],linea_hora_salida[4],linea_hora_salida[5],linea_hora_salida[6],hora_salida);
+//        Guardar_empleados.close();   
+         linea_remplazo=linea_hora_salida[0]+","+linea_hora_salida[1]+","+linea_hora_salida[2]+","+
+                linea_hora_salida[3]+","+linea_hora_salida[4]+","+linea_hora_salida[5]+","+linea_hora_salida[6]+","+hora_salida;
+        //imprime los datos del objeto
+    }else if(linea.contains(ingreso_cedula)==false){ //para ver si existe la cedula 0 si existe y + de  cero si no existe
+        cont++;
+    }
+    lineas.add(linea);
+    cantidad_lineas++;}
+    lineas.set(numero_linea, linea_remplazo);
+//    BufferedWriter bw = new BufferedWriter(new FileWriter(arc));
+//    bw.write("");
+//    bw.close();
+    File archivobor = new File("C:\\Users\\pc\\Documents\\GitHub\\Proyecto_Final_SW\\Proyecto_Final\\empleados.txt");
+    
+//    if (archivobor.delete()) {
+//              System.out.println("se borro el fichero");
+//              archivobor.createNewFile();
+//               for (int i = 0; i < lineas.size(); i++) {
+//              Guardar_empleados.println(lineas.get(i));   
+//          }
+//          Guardar_empleados.close();
+//          }
+//          else{
+//          
+//              System.out.println(" nose pudo ingresar la salida ");}
+          if (arc.delete()) {
+              System.out.println("se borro el fichero");
+              arc.createNewFile();
+               for (int i = 0; i < lineas.size(); i++) {
+              Guardar_empleados.println(lineas.get(i));   
+          }
+          Guardar_empleados.close();
+          }
+          else{
+          
+              System.out.println(" nose pudo ingresar la salida ");}
+// for (int i = 0; i < lineas.size(); i++) {
+//              Guardar_empleados.println(lineas.get(i));  }
+//  Guardar_empleados.close();
+         
+//if(cont>0)System.out.println("NO EXISTE EN REGISTRO de los empleados");
+       System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n",linea_hora_salida[0],linea_hora_salida[1],linea_hora_salida[2],
+                           linea_hora_salida[3],linea_hora_salida[4],linea_hora_salida[5],linea_hora_salida[6],hora_salida);
+    }
         public static void leer_empleados_vit(File arc){
         try {
             ArrayList<Personal_Servicios>lectura_empleados = new ArrayList<>();
@@ -272,5 +371,73 @@ public class Menu_Hostal {
 //        } catch (FileNotFoundException ex) {
 //            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+//    }
+//        public static void salida_hora(File arc) throws IOException{
+////        String nombre_archivoempleados="empleados.txt";
+////        File empleados = new File(nombre_archivoempleados);
+//        FileWriter mod = new FileWriter(arc,true); //TRUE PARA QUE NO SE SOBREESCRIBA EL ARCHIVO
+//    //    PrintWriter mod = new PrintWriter(arc);
+//         Calendar calendario = Calendar.getInstance();
+//         
+//           int hora,minutos,segundos,referencia_linea = 0;
+//           String hora_salida = null;
+//           int cont = 0,contadorgeneral=0;
+//           Scanner teclado = new Scanner(System.in) ;
+//           String ingreso_cedula = null;
+//           System.out.println("Ingrese su cedula");
+//           ingreso_cedula= teclado.next();
+//           String linea_remplazo = null;
+//            Scanner archivo = new Scanner(arc);
+//            int contador_limite=0;
+//            while(archivo.hasNext()){
+//            contador_limite++;
+//            }
+//            String acumulador[] = new String[contador_limite];
+//            while(archivo.hasNext()){   
+//            acumulador[contadorgeneral]=archivo.nextLine();
+//            contadorgeneral++;
+//            }
+//            String linea_hora_salida[] = new String[8];
+//            String linea;
+//            int contador_remplazo=0;
+//while(archivo.hasNext()){
+//    linea = archivo.nextLine(); //se asigna una linea a un string
+//    if(linea.contains(ingreso_cedula)){ //se verifica si la linea contiene la cedula
+//        
+//        linea_hora_salida= linea.split(",");
+//        
+//        hora = calendario.get(Calendar.HOUR_OF_DAY);
+//        minutos = calendario.get(Calendar.MINUTE);
+//        segundos = calendario.get(Calendar.SECOND);
+//        hora_salida = Integer.toString(hora)+":"+Integer.toString(minutos)+":"+Integer.toString(segundos);
+////        Guardar_empleados.printf("%s,%s,%s,%s,%s,%s,%s,%s %n", linea_hora_salida[0],linea_hora_salida[1],linea_hora_salida[2],
+////                linea_hora_salida[3],linea_hora_salida[4],linea_hora_salida[5],linea_hora_salida[6],hora_salida);
+////        Guardar_empleados.close();  
+//
+//
+//        referencia_linea=contador_remplazo;
+//         linea_remplazo=linea_hora_salida[0]+","+linea_hora_salida[1]+","+linea_hora_salida[2]+","+
+//                linea_hora_salida[3]+","+linea_hora_salida[4]+","+linea_hora_salida[5]+","+linea_hora_salida[6]+","+hora_salida;
+//         acumulador[referencia_linea]=linea_remplazo;
+//            arc.delete();
+//              arc.createNewFile();
+//
+//              
+//              for (int i = 0; i < contador_limite; i++) {
+//                  System.out.println(acumulador[i]);
+//                  mod.write(acumulador[i]);
+//                  mod.flush();
+//              }
+//              mod.close();
+//        //imprime los datos del objeto
+//    }else if(linea.contains(ingreso_cedula)==false){ //para ver si existe la cedula 0 si existe y + de  cero si no existe
+//        cont++;
+//            }
+//    contador_remplazo++;
+//    }
+//    
+////if(cont>0)System.out.println("NO EXISTE EN REGISTRO de los empleados");
+//       System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n",linea_hora_salida[0],linea_hora_salida[1],linea_hora_salida[2],
+//                           linea_hora_salida[3],linea_hora_salida[4],linea_hora_salida[5],linea_hora_salida[6],hora_salida);
 //    }
 }
