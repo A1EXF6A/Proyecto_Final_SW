@@ -139,37 +139,44 @@ public class Menu_Hostal {
                         break;
                     case 3:
                         int op4;
-                        System.out.println("De que persona deseas ver los datos");
-                        System.out.println("[1] Empleado");
-                        System.out.println("[2] Huesped");
-                        System.out.println("[3] Regresar");
-                        op4=Integer.valueOf(teclado.next());
-                        switch (op4){
-                            case 1:
-                                //Buscar con numero de cedula a un empleado y mostrar los datos
-                                break;
-                            case 2:
-                                //Buscar con num cedula a un huesped y mostrar los datos
-                                break;
-                            case 3:
-                                
-                                break;
-                            default:
-                                break;
-                        }
-                        
-                        for (int i = 0; i < ListaPersonal.size(); i++) {
+                        boolean salir2 = false;
+                        do {
+                            try {
+                                System.out.println("De que persona deseas ver los datos");
+                                System.out.println("[1] Empleado");
+                                System.out.println("[2] Huesped");
+                                System.out.println("[3] Regresar");
+                                op4 = Integer.valueOf(teclado.next());
+                                switch (op4) {
+                                    case 1:
+                                        //Buscar con numero de cedula a un empleado y mostrar los datos
+                                        for (int i = 0; i < ListaPersonal.size(); i++) {
 
-                            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
-                                    "DIRECCION", "TELEFONO", "HORA DE ENTRADA", "HORA DE SALIDA");
-                            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", ListaPersonal.get(i).cargo,
-                                    ListaPersonal.get(i).cédula, ListaPersonal.get(i).nombre, ListaPersonal.get(i).apellido,
-                                    ListaPersonal.get(i).direccion, ListaPersonal.get(i).telefono, ListaPersonal.get(i).hora_entrada, ListaPersonal.get(i).hora_salida);
-                        }
+                                            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
+                                                    "DIRECCION", "TELEFONO", "HORA DE ENTRADA", "HORA DE SALIDA");
+                                            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", ListaPersonal.get(i).cargo,
+                                                    ListaPersonal.get(i).cédula, ListaPersonal.get(i).nombre, ListaPersonal.get(i).apellido,
+                                                    ListaPersonal.get(i).direccion, ListaPersonal.get(i).telefono, ListaPersonal.get(i).hora_entrada, ListaPersonal.get(i).hora_salida);
+                                        }
+                                        break;
+                                    case 2:
+                                        //Buscar con num cedula a un huesped y mostrar los datos
+                                        break;
+                                    case 3:
+                                        salir2 = true;
+                                        break;
+                                    default:
+                                        System.out.println("Ingresar numeros que se encuentren en el menu");
+                                        break;
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Ingresar solo numeros");
+                            }
+                        } while (salir2 != true);
                         break;
 
                     case 4:
-
+                        //Mostrar todos los datos Generales
                         break;
                     case 5:
                         exit = true;
