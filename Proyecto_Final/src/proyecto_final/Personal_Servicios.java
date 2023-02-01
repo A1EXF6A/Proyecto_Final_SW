@@ -21,7 +21,7 @@ public class Personal_Servicios extends Persona {
         String ingreso_nombre;
         do {
             try {
-                System.out.print("Nombre: ");
+                System.out.print("Ingrese nombre del nuevo empleado: ");
                 ingreso_nombre = teclado.next();
                 verificar = ingreso_nombre.matches("[a-zA-Z]{3,15}");
                 if (verificar == true) {
@@ -38,7 +38,7 @@ public class Personal_Servicios extends Persona {
         String ingreso_apellido;
         do {
             try {
-                System.out.print("Apellido: ");
+                System.out.print("Ingrese el apellido del nuevo empleado ");
                 ingreso_apellido = teclado.next();
                 verificar = ingreso_apellido.matches("[a-zA-Z]{3,15}");
                 if (verificar == true) {
@@ -55,7 +55,7 @@ public class Personal_Servicios extends Persona {
 
         do {
             try {
-                System.out.print("Cedula: ");
+                System.out.print("Ingrese el numero de cedula del nuevo empleado ");
                 ingreso_cedula = teclado.next();
                 verificar = ingreso_cedula.matches(patroncedula);
                 if (verificar == true) {
@@ -70,8 +70,8 @@ public class Personal_Servicios extends Persona {
         } while (verificar == false);
         String ingreso_direccion;
         do {
-            System.out.print("Direccion: ");
-            ingreso_direccion = teclado.next();
+            System.out.print("Ingrese la direccion del nuevo empleado: ");
+            ingreso_direccion = teclado.nextLine();
             verificar = ingreso_direccion.matches("[a-zA-Z0-9]{3,20}");
             if (verificar == true) {
                 super.direccion = ingreso_direccion;
@@ -82,7 +82,7 @@ public class Personal_Servicios extends Persona {
         } while (verificar == false);
         String ingreso_telefono;
         do {
-            System.out.print("telefono: ");
+            System.out.print("Ingrese el numerom celular del nuevo empleado: ");
             ingreso_telefono = teclado.next();
             verificar = ingreso_telefono.matches("[0][9][0-9]{8}");
             if (verificar == true) {
@@ -94,7 +94,7 @@ public class Personal_Servicios extends Persona {
         } while (verificar == false);
         String ingreso_cargo;
         do {
-            System.out.print("Cargo: ");
+            System.out.print("Ingrese el cargo de trabajo del nuevo empleado: ");
             ingreso_cargo = teclado.next();
             verificar = ingreso_cargo.matches("[a-zA-Z]{5,15}");
             if (verificar == true) {
@@ -130,7 +130,7 @@ public class Personal_Servicios extends Persona {
             }
         } while (!opcion2.equalsIgnoreCase("no") && !opcion2.equalsIgnoreCase("si"));
 
-    }
+    }  //Confirmar con cedula y archivos
         public void salir() {
         String opcion2 = null;
         int hora, minutos, segundos;
@@ -155,7 +155,7 @@ public class Personal_Servicios extends Persona {
             }
         } while (!opcion2.equalsIgnoreCase("no") && !opcion2.equalsIgnoreCase("si"));
 
-    }
+    } //Confirmar con cedula y archivos
 
     
     public void getAtributos() {

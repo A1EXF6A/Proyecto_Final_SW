@@ -101,7 +101,7 @@ public class Huespedes extends Persona {
 
     public void CancelarReserva() {
         this.reserva = false;
-    }
+    } //Cambiar en el archivo el dato de reserva
 
     public void Hospedaje() {
 

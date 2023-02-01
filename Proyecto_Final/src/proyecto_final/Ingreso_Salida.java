@@ -24,14 +24,4 @@ public class Ingreso_Salida {
         this.num_room = num_room;
         this.bed = bed;
     }
-
-    //METODO QUE DEVUELVE TODOS LOS ATRIBUTOS DEL CLIENTE EN FORMA DE CADENA
-    //ESTE CADENA SE LA PUEDE IMPRIMIR EN UN ARCHIVO
-
-    /*public void salir() {
-        System.out.println("GRACIAS POR HOSPEDARSE EN EL HOTEL XXXXXXXXX");
-        System.out.println("ESPERAMOS QUE VUELVA PRONTO SEÑOR: " + this.nombre + " " + this.apellido);
-    }*/
-
 }
-//  persona personal_servicios 
