@@ -238,16 +238,15 @@ public class Menu_Hostal {
             while(archivo.hasNext()){
                 linea = archivo.nextLine().split(",");
                 lectura_empleados.add(new Personal_Servicios(linea[0],linea[1],linea[2],linea[3],linea[4],linea[5],linea[6],linea[7]));
-                System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
+  
+            }
+            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
                                    "DIRECCION", "TELEFONO", "HORA DE ENTRADA", "HORA DE SALIDA");
-                for (int i = 0; i < lectura_empleados.size(); i++) {
+            for (int i = 0; i < lectura_empleados.size(); i++) {
                      System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", lectura_empleados.get(i).cargo,
                                     lectura_empleados.get(i).cédula, lectura_empleados.get(i).nombre, lectura_empleados.get(i).apellido,
                                     lectura_empleados.get(i).direccion, lectura_empleados.get(i).telefono, lectura_empleados.get(i).hora_entrada, lectura_empleados.get(i).hora_salida);
                 }
-                           
-                
-            }  
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
         }
