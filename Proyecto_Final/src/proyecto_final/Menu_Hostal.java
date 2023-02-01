@@ -31,9 +31,9 @@ public class Menu_Hostal {
         do {
             System.out.printf("\n", "OPCIONES");
             System.out.println("[1] Menú del Personal");
-            System.out.println("[2] Ingreso-Salida de huespedes");
+            System.out.println("[2] Menú de Huespedes");
             System.out.println("[3] Datos de empleados y huespedes");
-            System.out.println("[4] Datos Generales");
+            System.out.println("[4] Datos Generales del Hotel");
             System.out.println("[5] Salir");
             try {
                 op = Integer.valueOf(teclado.next());
@@ -138,6 +138,26 @@ public class Menu_Hostal {
 
                         break;
                     case 3:
+                        int op4;
+                        System.out.println("De que persona deseas ver los datos");
+                        System.out.println("[1] Empleado");
+                        System.out.println("[2] Huesped");
+                        System.out.println("[3] Regresar");
+                        op4=Integer.valueOf(teclado.next());
+                        switch (op4){
+                            case 1:
+                                //Buscar con numero de cedula a un empleado y mostrar los datos
+                                break;
+                            case 2:
+                                //Buscar con num cedula a un huesped y mostrar los datos
+                                break;
+                            case 3:
+                                
+                                break;
+                            default:
+                                break;
+                        }
+                        
                         for (int i = 0; i < ListaPersonal.size(); i++) {
 
                             System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
