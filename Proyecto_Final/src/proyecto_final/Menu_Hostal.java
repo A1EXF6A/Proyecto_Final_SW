@@ -144,6 +144,7 @@ public class Menu_Hostal {
                         System.out.println("\033[44mDatos de los huespedes");
                         leer(huespedes);
                         datosGenerales(empleados, huespedes);
+                        System.out.println("HOLA");
                         
                         
                         break;
