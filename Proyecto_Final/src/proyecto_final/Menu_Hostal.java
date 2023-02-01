@@ -27,6 +27,8 @@ public class Menu_Hostal {
         FileWriter fwempleados = new FileWriter(empleados,true); //TRUE PARA QUE NO SE SOBREESCRIBA EL ARCHIVO
         PrintWriter Guardar_empleados = new PrintWriter(fwempleados);
         FileReader frempleados = new FileReader(empleados);
+        FileWriter fwhuespedes = new FileWriter(huespedes,true);
+        PrintWriter Guardar_huespedes = new PrintWriter(fwhuespedes);
         Scanner leer_empleados = new Scanner(frempleados);
         
         Scanner teclado = new Scanner(System.in);
@@ -67,7 +69,7 @@ public class Menu_Hostal {
 //                        }
                         break;
                     case 2:
-                        Huespedes huesped = new Huespedes(false, false, 0, "", "", "", "", "", "", "", "");
+                        Huespedes huesped = new Huespedes("", "", "", "", "", "", "", "");
                         System.out.println("[1] Hacer una reservacion");
                         System.out.println("[2] Confirmar un hospedaje");
                         System.out.println("[3] Desocupar cuarto");
@@ -82,6 +84,13 @@ public class Menu_Hostal {
                                         huesped.Entrada();
                                         ArrayList<Huespedes> ListaHuespedes=new ArrayList();
                                         ListaHuespedes.add(huesped);
+                                               hora = calendario.get(Calendar.HOUR_OF_DAY);
+                        minutos = calendario.get(Calendar.MINUTE);
+                        segundos = calendario.get(Calendar.SECOND);
+                        huesped.hora_entrada = Integer.toString(hora)+":"+Integer.toString(minutos)+":"+Integer.toString(segundos);
+                                Guardar_huespedes.printf("%s,%s,%s,%s,%s,%s,%s,%s %n",huesped.pais,huesped.cédula,huesped.nombre,huesped.apellido,
+                                huesped.direccion,huesped.telefono,huesped.hora_entrada,huesped.hora_salida);
+                                Guardar_huespedes.close();
                                         //reservacion
                                     } else if (op2.equalsIgnoreCase("no")) {
                                         break;
@@ -91,8 +100,14 @@ public class Menu_Hostal {
                                 } while (!op2.equalsIgnoreCase("no") && !op2.equalsIgnoreCase("si"));
                                 break;
                             case 2:
-                                System.out.println("Desea confirmar hospedaje");
-                                //Guardar en archivo
+                                //System.out.println("Desea confirmar hospedaje");
+                                hora = calendario.get(Calendar.HOUR_OF_DAY);
+                        minutos = calendario.get(Calendar.MINUTE);
+                        segundos = calendario.get(Calendar.SECOND);
+                        huesped.hora_entrada = Integer.toString(hora)+":"+Integer.toString(minutos)+":"+Integer.toString(segundos);
+                                Guardar_huespedes.printf("%s,%s,%s,%s,%s,%s,%s,%s %n",huesped.pais,huesped.cédula,huesped.nombre,huesped.apellido,
+                                huesped.direccion,huesped.telefono,huesped.hora_entrada,huesped.hora_salida);
+                                Guardar_huespedes.close();
                                 
                                 break;
                             case 3:
@@ -151,7 +166,8 @@ public class Menu_Hostal {
                         System.out.println("\033[44mDatos de los empleados");
                         leer_empleados_vit(empleados);
                         System.out.println("\033[44mDatos de los huespedes");
-                        leer(huespedes);
+                        leer_huespedes_vit(huespedes);
+//leer(huespedes);
                         datosGenerales(empleados, huespedes);
                         
                         
@@ -350,28 +366,29 @@ while(archivo.hasNext()){
             Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-//    public static void leer_huespedes_vit(File arc){
-//        try {
-//            ArrayList<Huespedes>lectura_huespedess = new ArrayList<>();
-//            Scanner archivo = new Scanner(arc);
-//            String linea[];
-//            while(archivo.hasNext()){
-//                linea = archivo.nextLine().split(",");
-//                lectura_huespedes.add(new Huespedes(Integer.valueOf(linea[0]),linea[1],linea[2],linea[3],linea[4],linea[5],linea[6],linea[7],linea[8],linea[9],linea[10]));
-//                System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n","TEMPERATURA",
-//                                   "PAIS", "CEDULA", "NOMBRE", "APELLIDO","DIRECCION","TELEFONO","HORA DE ENTRADA","HORA DE SALIDA");
-//                for (int i = 0; i < lectura_empleados.size(); i++) {
-//                     System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", lectura_empleados.get(i).cargo,
-//                                    lectura_empleados.get(i).cédula, lectura_empleados.get(i).nombre, lectura_empleados.get(i).apellido,
-//                                    lectura_empleados.get(i).direccion, lectura_empleados.get(i).telefono, lectura_empleados.get(i).hora_entrada, lectura_empleados.get(i).hora_salida);
-//                }
-//                           
-//                
-//            }  
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public static void leer_huespedes_vit(File arc){
+        try {
+            ArrayList<Huespedes>lectura_huespedes = new ArrayList<>();
+            Scanner archivo = new Scanner(arc);
+            String linea[];
+            while(archivo.hasNext()){
+                linea = archivo.nextLine().split(",");
+                lectura_huespedes.add(new Huespedes(linea[0],linea[1],linea[2],linea[3],linea[4],linea[5],linea[6],linea[7]));
+            }
+            System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "PAIS", "CEDULA", "NOMBRE", "APELLIDO",
+                                   "DIRECCION", "TELEFONO", "HORA DE ENTRADA", "HORA DE SALIDA");
+                for (int i = 0; i < lectura_huespedes.size(); i++) {
+                     System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", lectura_huespedes.get(i).pais,
+                                    lectura_huespedes.get(i).cédula, lectura_huespedes.get(i).nombre, lectura_huespedes.get(i).apellido,
+                                    lectura_huespedes.get(i).direccion, lectura_huespedes.get(i).telefono, lectura_huespedes.get(i).hora_entrada, lectura_huespedes.get(i).hora_salida);
+                }
+                           
+                
+              
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 //        public static void salida_hora(File arc) throws IOException{
 ////        String nombre_archivoempleados="empleados.txt";
 ////        File empleados = new File(nombre_archivoempleados);

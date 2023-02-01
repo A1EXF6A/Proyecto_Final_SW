@@ -4,20 +4,26 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class Huespedes extends Persona {
+    protected boolean estadoCama[]= new boolean[5];
+        Scanner teclado = new Scanner(System.in);
+    //Atributos de la clase Huespedes
+    protected boolean reserva = false;
+    protected boolean hospedaje = false;
+    protected double temperatura = 0.0;
+    protected String pais = "";
+    protected int camas, hora, minutos, segundos;
+
+    public Huespedes(String pais,String cédula, String nombre, String apellido, String direccion, String telefono, String hora_entrada, String hora_salida) {
+        super(cédula, nombre, apellido, direccion, telefono, hora_entrada, hora_salida);
+        this.pais=pais;
+    }
+
 
     public Huespedes(boolean[] estadoCama, String cédula, String nombre, String apellido, String direccion, String telefono, String hora_entrada, String hora_salida) {
         super(cédula, nombre, apellido, direccion, telefono, hora_entrada, hora_salida);
         this.estadoCama = estadoCama;
     }
 
-    Scanner teclado = new Scanner(System.in);
-    //Atributos de la clase Huespedes
-    protected boolean reserva = false;
-    protected boolean hospedaje = false;
-    protected double temperatura = 0.0;
-    protected String pais = "";
-    protected boolean[] estadoCama;
-    protected int camas, hora, minutos, segundos;
 
     public Huespedes(String date, int costo, int num_room, int bed, boolean reserva, boolean hospedaje, double temperatura, String pais, String cédula, String nombre, String apellido, String direccion, String telefono, String hora_entrada, String hora_salida) {
         super(cédula, nombre, apellido, direccion, telefono, hora_entrada, hora_salida);
@@ -30,17 +36,16 @@ public class Huespedes extends Persona {
 
     public int camasDisponibles() {
         int contador = 0;
-        for (int i = 0; i < camas; i++) {
-            if (!estadoCama[i]) {
+        for (int i = 0; i < 5; i++) {
+            if (estadoCama[i]==false) {
+        } else {
                 System.out.printf("cama %d esta disponible: %s\n", i + 1, estadoCama[i]);
-                contador++;
-            }
-        }
-        return contador;
+                contador++;           
+            }}        return contador;
     }
 
-    public void reservarCama() {
-        int opcion_cama, control_cama = 0;
+    public void reservarCama(int opcion_cama ) {
+        int control_cama = 0;
         do {
             System.out.println("Ingrese la cama que desea reservar");
             opcion_cama = Integer.valueOf(teclado.next());
@@ -234,7 +239,29 @@ public class Huespedes extends Persona {
         } while (this.camas < 0 || this.camas > 6);
 
         System.out.printf("Hay %d camas disponibles\n", camasDisponibles());
-        reservarCama();
+        if (camasDisponibles()==0) {
+            System.out.println("no existen camas disponibles");
+        }
+        else{ 
+            int op_cama_re = 0,opc_repetir = 0;
+            String op_cama=null;
+            
+            System.out.println("Ingrese la cama que desea reservar");
+            op_cama_re= Integer.valueOf(teclado.next());
+            reservarCama(op_cama_re);
+            do{
+                System.out.println("desea reservar otra cama si/no");
+            op_cama= teclado.next();
+                if (op_cama.equalsIgnoreCase("si")) {
+                    System.out.println("Ingrese la cama que desea reservar");
+            op_cama_re= Integer.valueOf(teclado.next());
+            reservarCama(op_cama_re);
+                }else
+                    
+                {
+                opc_repetir=1;
+                };
+            }while(opc_repetir!=1);}
 
         super.costo = (this.camas * costo_cama);
         //asignamiento habitacion - archivos
@@ -311,7 +338,7 @@ public class Huespedes extends Persona {
         } while (control_temperatura != 1);
         //pais origen
         int control_pais = 0;
-        String formato_pais = "[a-zA-Z]";
+        String formato_pais = "[a-zA-Z]{3,20}";
         do {
             try {
                 System.out.println("Ingrese el pais de procedencia");

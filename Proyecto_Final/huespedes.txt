@@ -1,4 +1,8 @@
-alex,guachi,18,0993350552,soltero,estudiante,software,185074414
-juan,paredes,20,093505588,casado,luis,profesional
-maria,vernades,20,casada,viuda,divorciada,hoal
-giomaira,gomez,19,nose,derecho,estudiante,1850274415
+Ecuador,1800556633,alex,guachi,pelileo,0993350552,1:1:1, 
+Brasil,1843556633,juan,paredes,ambato,093505588,12:15:55, 
+Argentina,1402556633,maria,vernades,latacunga,0963741852,13:40:50, 
+Peru,1722556633,giomaira,gomez,patate,0963852741,15:15:52, 
+empleado,0123456789,David,Giler,cuenca,0987598197,6:58:28, 
+a,0503022626,joel,ojeda,ambato,0963258741,10:16:14,  
+guatemala,0563985214,efrain,ruales,guayakill,0966666666,10:19:43, 
+Ecuador,0150496420,David,Giler,Ambato,0987598197,10:27:9, 
