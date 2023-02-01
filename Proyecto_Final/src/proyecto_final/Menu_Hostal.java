@@ -140,11 +140,11 @@ public class Menu_Hostal {
                     case 4:
                         System.out.println("Los datos contenidos que posee el hotel son");
                         System.out.println("\033[44mDatos de los empleados");
-                        leer(empleados);
+                        leer_empleados_vit(empleados);
                         System.out.println("\033[44mDatos de los huespedes");
                         leer(huespedes);
                         datosGenerales(empleados, huespedes);
-                        System.out.println("HOLA");
+                        
                         
                         
                         break;
@@ -209,7 +209,7 @@ public class Menu_Hostal {
     }
     public static void datosGenerales(File acr1,File acr2){
         try {
-            FileWriter datos = new FileWriter("C:\\Users\\HOME\\OneDrive - UNIVERSIDAD TÉCNICA DE AMBATO\\1 semestre-repeticion\\LECTRURA\\lectura2.txt",true);
+            FileWriter datos = new FileWriter("lectura2.txt",true);
             
             Scanner ar = new Scanner(acr1); Scanner ar2 = new Scanner(acr1); String line = "";
             datos.write("DATOS EMPLEADOS: \n");
@@ -230,4 +230,48 @@ public class Menu_Hostal {
         }
         
     }
+        public static void leer_empleados_vit(File arc){
+        try {
+            ArrayList<Personal_Servicios>lectura_empleados = new ArrayList<>();
+            Scanner archivo = new Scanner(arc);
+            String linea[];
+            while(archivo.hasNext()){
+                linea = archivo.nextLine().split(",");
+                lectura_empleados.add(new Personal_Servicios(linea[0],linea[1],linea[2],linea[3],linea[4],linea[5],linea[6],linea[7]));
+                System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", "CARGO", "CEDULA", "NOMBRE", "APELLIDO",
+                                   "DIRECCION", "TELEFONO", "HORA DE ENTRADA", "HORA DE SALIDA");
+                for (int i = 0; i < lectura_empleados.size(); i++) {
+                     System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", lectura_empleados.get(i).cargo,
+                                    lectura_empleados.get(i).cédula, lectura_empleados.get(i).nombre, lectura_empleados.get(i).apellido,
+                                    lectura_empleados.get(i).direccion, lectura_empleados.get(i).telefono, lectura_empleados.get(i).hora_entrada, lectura_empleados.get(i).hora_salida);
+                }
+                           
+                
+            }  
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+//    public static void leer_huespedes_vit(File arc){
+//        try {
+//            ArrayList<Huespedes>lectura_huespedess = new ArrayList<>();
+//            Scanner archivo = new Scanner(arc);
+//            String linea[];
+//            while(archivo.hasNext()){
+//                linea = archivo.nextLine().split(",");
+//                lectura_huespedes.add(new Huespedes(Integer.valueOf(linea[0]),linea[1],linea[2],linea[3],linea[4],linea[5],linea[6],linea[7],linea[8],linea[9],linea[10]));
+//                System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n","TEMPERATURA",
+//                                   "PAIS", "CEDULA", "NOMBRE", "APELLIDO","DIRECCION","TELEFONO","HORA DE ENTRADA","HORA DE SALIDA");
+//                for (int i = 0; i < lectura_empleados.size(); i++) {
+//                     System.out.printf("|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|%-17s|\n", lectura_empleados.get(i).cargo,
+//                                    lectura_empleados.get(i).cédula, lectura_empleados.get(i).nombre, lectura_empleados.get(i).apellido,
+//                                    lectura_empleados.get(i).direccion, lectura_empleados.get(i).telefono, lectura_empleados.get(i).hora_entrada, lectura_empleados.get(i).hora_salida);
+//                }
+//                           
+//                
+//            }  
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(Menu_Hostal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }
