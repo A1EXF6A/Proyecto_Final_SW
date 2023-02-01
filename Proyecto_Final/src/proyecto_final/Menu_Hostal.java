@@ -87,41 +87,54 @@ public class Menu_Hostal {
                         break;
                     case 2:
                         Huespedes huesped = new Huespedes(false, false, 0, "", "", "", "", "", "", "", "");
-                        System.out.println("[1] Hacer una reservacion");
-                        System.out.println("[2] Confirmar un hospedaje");
-                        System.out.println("[3] Desocupar cuarto");
-                        op1 = Integer.valueOf(teclado.next());
-                        switch (op1) {
-                            case 1:
-                                String op2;
-                                do {
-                                    System.out.println("Bienvenido, desea alojarse en nuestro hotel:");
-                                    op2 = teclado.next();
-                                    if (op2.equalsIgnoreCase("Sí")) {
-                                        huesped.Entrada();
-                                        ArrayList<Huespedes> ListaHuespedes = new ArrayList();
-                                        ListaHuespedes.add(huesped);
-                                        //reservacion
-                                    } else if (op2.equalsIgnoreCase("no")) {
+                        boolean salir1 = false;
+                        do {
+                            try {
+                                salir1 = false;
+                                System.out.println("[1] Hacer una reservacion");
+                                System.out.println("[2] Confirmar un hospedaje");
+                                System.out.println("[3] Desocupar cuarto");
+                                System.out.println("[4] Regresar");
+                                op1 = Integer.valueOf(teclado.next());
+                                switch (op1) {
+                                    case 1:
+                                        String op2;
+                                        do {
+                                            System.out.println("Bienvenido, desea alojarse en nuestro hotel:");
+                                            op2 = teclado.next();
+                                            if (op2.equalsIgnoreCase("Sí")) {
+                                                huesped.Entrada();
+                                                ArrayList<Huespedes> ListaHuespedes = new ArrayList();
+                                                ListaHuespedes.add(huesped);
+                                                //reservacion
+                                            } else if (op2.equalsIgnoreCase("no")) {
+                                                break;
+                                            } else {
+                                                System.out.println("Ingrese solo si o no");
+                                            }
+                                        } while (!op2.equalsIgnoreCase("no") && !op2.equalsIgnoreCase("si"));
                                         break;
-                                    } else {
-                                        System.out.println("Ingrese solo si o no");
-                                    }
-                                } while (!op2.equalsIgnoreCase("no") && !op2.equalsIgnoreCase("si"));
-                                break;
-                            case 2:
-                                System.out.println("Desea confirmar hospedaje");
-                                //Guardar en archivo
+                                    case 2:
+                                        System.out.println("Desea confirmar hospedaje");
+                                        //Guardar en archivo
 
-                                break;
-                            case 3:
-                                System.out.println("Desea salir del hotel");
-                                break;
+                                        break;
+                                    case 3:
+                                        System.out.println("Desea abandonar el hotel");
+                                        break;
+                                    case 4:
+                                        salir1 = true;
+                                        break;
 
-                            default:
-                                System.out.println("Ingresar numeros dentro del menu");
+                                    default:
+                                        System.out.println("Ingresar numeros dentro del menu");
+                                        break;
 
-                        }
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Ingrese solo numeros");
+                            }
+                        } while (salir1 != true);
 
                         break;
                     case 3:
